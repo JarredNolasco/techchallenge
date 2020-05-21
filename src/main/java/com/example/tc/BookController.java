@@ -1,12 +1,9 @@
 package com.example.tc;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.HttpURLConnection;
@@ -17,10 +14,9 @@ import java.util.Scanner;
 
 @Controller
 public class BookController {
-    Book[] booksArray ;
+    Book[] booksArray;
 
     public BookController() {
-        String booksJson = "";
         try {
             String url = "https://servicepros-test-api.herokuapp.com/api/v1/books";
             URL obj = new URL(url);
@@ -36,11 +32,7 @@ public class BookController {
                 }
                 responseReader.close();
 
-                booksJson = buffer.toString();
-
-
                 booksArray = new ObjectMapper().readValue(buffer.toString(), Book[].class);
-
             }
         }catch(Exception e){
             System.out.println("Call To API Failed");
@@ -48,14 +40,11 @@ public class BookController {
     }
     @GetMapping("/")
     public String indexForm(Model model){
-        model.addAttribute("book",new Book());
-        model.addAttribute("booksArray",booksArray);
-        return "greeting";
+        return "index";
     }
 
     @GetMapping("/filter")
     public String filterForm(Model model,@RequestParam(value = "filterType") String filterType, @RequestParam(value = "filterContent") String filterContent){
-        model.addAttribute("book",new Book());;
         ArrayList<Book> filterArrayList = new ArrayList<Book>();
 
         switch(filterType) {
@@ -95,7 +84,6 @@ public class BookController {
 
     @GetMapping("/sort")
     public String sortForm(Model model, @RequestParam(value = "sortType") String sortType){
-        model.addAttribute("book",new Book());
 
         switch(sortType) {
             case "title":
