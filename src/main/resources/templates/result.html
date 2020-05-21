@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Results Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<a href="/">Execute Another Search</a>
+
+<h1>Result</h1>
+
+<ul th:each="book : ${booksArray}">
+    <li th:text="${ 'Book Title: ' + book.getTitle() + '    '+ 'Book Author: ' + book.getAuthor() + '    ' + 'Book Year: ' + book.getYear() + '    '  + 'Book ISBN: ' + book.getIsbn()}"><br></li>
+</ul>
+
+</body>
+</html>

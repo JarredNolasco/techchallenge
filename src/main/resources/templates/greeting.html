@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Book Repo Project</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Book Repo Project</h1>
+<br>
+
+<form th:action="@{/sort}" method="get" >
+    <label for="sortDD">Choose a sort type:</label>
+    <select th:name="sortType" id="sortDD" name="Sort">
+        <option value="title">Title</option>
+        <option value="author">Author Name</option>
+        <option value="yearasc">Year Ascending</option>
+        <option value="yeardes">Year Descending</option>
+    </select>
+    <input type="submit">
+</form>
+
+<br>
+
+<form th:action="@{/filter}" method="get">
+    <label for="filterDD">Choose a filter type:</label>
+    <select th:name="filterType" id="filterDD" name="filter">
+        <option value="title">Title</option>
+        <option value="author">Author Name</option>
+        <option value="year">Year</option>
+        <option value="isbn">ISBN</option>
+    </select>
+    <input th:name="filterContent" type="text" id="fname" name="fname">
+    <input type="submit">
+</form>
+
+
+
+</body>
+</html>
